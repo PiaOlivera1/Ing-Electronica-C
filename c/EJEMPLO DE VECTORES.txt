@@ -1,0 +1,141 @@
+//EJERCICIO VECTORES
+//###################
+
+//Se cargaran las Notas de un examen Parcial, los datos se cargan hasta que se cargue un "0".
+//o hasta que se llegue a la cantidad de alumnos maximos del curso (que son 50).
+
+//A- Mostrar el contenido del vector (Lo quiero mostrar de forma consecutiva a todo el vectror).
+//B- Mostrar todos los numeros mayores o iguales a 7.
+//C- Mostrar todos las Notas entre 4 y 6 (inclusive).
+//D -Mostrar todas las Notas menores a 4.
+//E- Mostrar la Nota Maxima y Minima.
+//F- Calcular el Promedio.
+//G- Mostrar todas las notas Mayores al Promedio.
+//G bis - Mostrar todas las notas Mayores al promedio.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#define cantidad 10
+
+int main()
+{
+    short Alumnos[cantidad];
+    short Resultados[cantidad];
+    short i=0,j=0, total_asistentes;
+    short maximo, minimo, bandera=0;
+    long sumatoria=0;
+    float promedio;
+
+// ETAPA DE CARGA
+    printf("Ingrese Nota del Alumno o '0' para SALIR \n");
+    scanf("%hd",&Alumnos[i]);
+
+    while(Alumnos[i]!=0 && i<cantidad)
+    {
+    i++;
+
+    printf("Ingrese Nota del Alumno o '0' para SALIR \n");
+    scanf("%hd",&Alumnos[i]);
+    }
+
+    total_asistentes=i;
+
+// ETAPA DE VISUALIZACION
+// PUNTO A
+printf("PUNTO A - TODO EL VECTOR \n");
+    for(i=0;i<total_asistentes;i++)
+    {
+    printf("La Nota es %hd \n",Alumnos[i]);
+    }
+
+printf("PUNTO B - PROMOCIONADOS \n");
+    for(i=0;i<total_asistentes;i++)
+    {
+        if(Alumnos[i]>=7)
+        {
+        printf("La Nota es %hd \n",Alumnos[i]);
+        }
+    }
+
+printf("PUNTO C - VAN A FINAL \n");
+    for(i=0;i<total_asistentes;i++)
+    {
+        if(Alumnos[i]>=4 && Alumnos[i]<7)
+        {
+        printf("La Nota es %hd \n",Alumnos[i]);
+        }
+    }
+
+printf("PUNTO D - DESAPROBADOS \n");
+    for(i=0;i<total_asistentes;i++)
+    {
+        if(Alumnos[i]<4)
+        {
+        printf("La Nota es %hd \n",Alumnos[i]);
+        }
+    }
+
+printf("PUNTO E - NOTA MAXIMA y MINIMA \n");
+    for(i=0;i<total_asistentes;i++)
+    {
+        if(Alumnos[i]>maximo || i==0) // EL i=0 EQUIVALENTE A USAR UNA BANDERA
+        {
+        maximo=Alumnos[i];
+        }
+
+        if(Alumnos[i]<minimo || i==0) // EL i=0 EQUIVALENTE A USAR UNA BANDERA
+        {
+        minimo=Alumnos[i];
+        }
+    }
+printf("EL MAXIMO FUE: %hd \n",maximo);
+printf("EL MINIMO FUE: %hd \n",minimo);
+
+
+printf("PUNTO F - DESAPROBADOS \n");
+    for(i=0;i<total_asistentes;i++)
+    {
+    sumatoria=sumatoria+ Alumnos[i];
+    }
+
+promedio=(float)sumatoria/total_asistentes;
+printf("PROMEDIO: %f \n",promedio);
+
+
+/////////////////////////////////////////////
+
+printf("PUNTO G - NOTAS MAYORES AL PROMEDIO \n");
+
+    for(i=0;i<total_asistentes;i++)
+    {
+    if(Alumnos[i]>promedio)
+    {
+      printf("NOTA MAYOR AL PROMEDIO: %hd \n",Alumnos[i]);
+    }
+
+    }
+
+////////////////////////////////////////////////
+
+printf("PUNTO G Bis - NOTAS MAYORES AL PROMEDIO \n");
+
+j=0;
+
+    for(i=0;i<total_asistentes;i++)
+    {
+
+    if(Alumnos[i]>promedio)
+    {
+    Resultados[j]=Alumnos[i];
+    j++;
+    }
+    }
+
+    for(i=0;i<j;i++)
+    {
+    printf("NOTA MAYOR AL PROMEDIO: %hd \n",Resultados[i]);
+    }
+
+return 0;
+}

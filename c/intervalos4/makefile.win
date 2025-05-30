@@ -1,0 +1,37 @@
+# Project: intervalos4
+# Makefile created by Red Panda C++ 3.2.2958
+
+CXX      = "g++.exe"
+CC       = "gcc.exe"
+WINDRES  = "windres.exe"
+RM       = del /q /f
+CD       = cd /d
+LIBS     = 
+INCS     = 
+CXXINCS  = 
+CXXFLAGS = $(CXXINCS) "-g3" "-pipe" "-Wall" "-D_DEBUG"
+CFLAGS   = $(INCS) "-g3" "-pipe" "-Wall" "-D_DEBUG"
+WINDRESFLAGS = 
+RES      = intervalos4_private.res
+OBJ      = main.o $(RES)
+BIN      = intervalos4.exe
+LINKOBJ  = "main.o" "intervalos4_private.res"
+CLEANOBJ = "main.o" "intervalos4_private.res" "intervalos4.exe"
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	-$(RM) $(CLEANOBJ) >NUL 2>&1
+
+intervalos4.exe: $(OBJ)
+
+	$(CC) $(LINKOBJ) -o "intervalos4.exe" $(LIBS)
+
+main.o: main.c
+	$(CC) -c "main.c" -o "main.o" $(CFLAGS) 
+
+intervalos4_private.res: intervalos4_private.rc 
+	$(WINDRES) -i "intervalos4_private.rc" --input-format=rc -o "intervalos4_private.res" -O coff $(WINDRESFLAGS) 
+

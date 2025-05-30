@@ -1,0 +1,22 @@
+[
+    {
+        "caretX": 16,
+        "caretY": 21,
+        "filename": "C:/Users/piaol/Documents/c/funciones/ejercicio2.c",
+        "focused": true,
+        "isOpen": true,
+        "left": 0,
+        "order": 1,
+        "top": 0
+    },
+    {
+        "caretX": 12,
+        "caretY": 5,
+        "filename": "C:/Users/piaol/Documents/c/funciones/main.c",
+        "focused": false,
+        "isOpen": true,
+        "left": 0,
+        "order": 0,
+        "top": 0
+    }
+]

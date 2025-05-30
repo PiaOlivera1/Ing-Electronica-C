@@ -1,0 +1,37 @@
+# Project: for
+# Makefile created by Red Panda C++ 3.2.2958
+
+CXX      = "g++.exe"
+CC       = "gcc.exe"
+WINDRES  = "windres.exe"
+RM       = del /q /f
+CD       = cd /d
+LIBS     = 
+INCS     = 
+CXXINCS  = 
+CXXFLAGS = $(CXXINCS) "-g3" "-pipe" "-Wall" "-D_DEBUG"
+CFLAGS   = $(INCS) "-g3" "-pipe" "-Wall" "-D_DEBUG"
+WINDRESFLAGS = 
+RES      = for_private.res
+OBJ      = main.o $(RES)
+BIN      = for.exe
+LINKOBJ  = "main.o" "for_private.res"
+CLEANOBJ = "main.o" "for_private.res" "for.exe"
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	-$(RM) $(CLEANOBJ) >NUL 2>&1
+
+for.exe: $(OBJ)
+
+	$(CC) $(LINKOBJ) -o "for.exe" $(LIBS)
+
+main.o: main.c
+	$(CC) -c "main.c" -o "main.o" $(CFLAGS) 
+
+for_private.res: for_private.rc 
+	$(WINDRES) -i "for_private.rc" --input-format=rc -o "for_private.res" -O coff $(WINDRESFLAGS) 
+

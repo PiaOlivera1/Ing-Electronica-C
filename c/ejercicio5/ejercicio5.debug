@@ -1,0 +1,15 @@
+{
+    "breakpoints": [
+        {
+            "breakpoint_type": 0,
+            "condition": "",
+            "enabled": true,
+            "filename": "main.cpp",
+            "line": 2,
+            "timestamp": "1745934609745"
+        }
+    ],
+    "timestamp": "1745934638745",
+    "watchvars": [
+    ]
+}
