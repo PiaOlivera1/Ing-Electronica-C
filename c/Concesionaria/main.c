@@ -48,6 +48,8 @@ int main(int argc, char *argv[]) {
 	long disponible_venta;
 	long minimo;
 	long maximo;
+	long indice_min =0;
+	long indice_max=0;
 	short bandera =1;
 	short autos_may_2020=0;
 	
@@ -103,13 +105,30 @@ int main(int argc, char *argv[]) {
 		
 		if(autos_disponibles[i].precio< minimo){
 			minimo =autos_disponibles[i].precio;
+			indice_min =i;
 		}
 		if(autos_disponibles[i].precio > maximo){
 			maximo = autos_disponibles[i].precio;
+			indice_max =i;
 		}
 	}
-	printf("El auto de menor valor es de : %ld\n", minimo);
+	
+	printf("Detalle del auto de menor valor:\n");
+	printf("Marca: %s\n", autos_disponibles[indice_min].marca);
+	printf("Modelo: %s\n", autos_disponibles[indice_min].modelo);
+	printf("Anio: %ld\n", autos_disponibles[indice_min].anio);
+	printf("Precio: %ld\n", autos_disponibles[indice_min].precio);
+	printf("Km: %ld\n", autos_disponibles[indice_min].km);
 	printf("El auto de mayor valor es de : %ld\n", maximo);
+	printf("\n");
+	printf("Detalle del auto de mayor valor:\n");
+	printf("Marca: %s\n", autos_disponibles[indice_max].marca);
+	printf("Modelo: %s\n", autos_disponibles[indice_max].modelo);
+	printf("Anio: %ld\n", autos_disponibles[indice_max].anio);
+	printf("Precio: %ld\n", autos_disponibles[indice_max].precio);
+	printf("Km: %ld\n", autos_disponibles[indice_max].km);
+	
+	printf("\n");
 	
 	printf("Auto menor en km:\n");
 	for( i=0;i<disponible_venta;i++){
@@ -121,7 +140,7 @@ int main(int argc, char *argv[]) {
 			printf("Km: %ld\n", autos_disponibles[i].km);
 		}
 	}	
-
+	printf("\n");
 	
 	
 	printf("Autos fabricados apartir del anio 2020\n");
