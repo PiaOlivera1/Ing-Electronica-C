@@ -1,0 +1,37 @@
+# Project: Concesionaria
+# Makefile created by Red Panda C++ 3.2.2958
+
+CXX      = "g++.exe"
+CC       = "gcc.exe"
+WINDRES  = "windres.exe"
+RM       = del /q /f
+CD       = cd /d
+LIBS     = 
+INCS     = 
+CXXINCS  = 
+CXXFLAGS = $(CXXINCS) "-g3" "-pipe" "-Wall" "-D_DEBUG"
+CFLAGS   = $(INCS) "-g3" "-pipe" "-Wall" "-D_DEBUG"
+WINDRESFLAGS = 
+RES      = Concesionaria_private.res
+OBJ      = main.o $(RES)
+BIN      = Concesionaria.exe
+LINKOBJ  = "main.o" "Concesionaria_private.res"
+CLEANOBJ = "main.o" "Concesionaria_private.res" "Concesionaria.exe"
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	-$(RM) $(CLEANOBJ) >NUL 2>&1
+
+Concesionaria.exe: $(OBJ)
+
+	$(CC) $(LINKOBJ) -o "Concesionaria.exe" $(LIBS)
+
+main.o: main.c
+	$(CC) -c "main.c" -o "main.o" $(CFLAGS)  -finput-charset=UTF-8 -fexec-charset=windows-1252
+
+Concesionaria_private.res: Concesionaria_private.rc 
+	$(WINDRES) -i "Concesionaria_private.rc" --input-format=rc -o "Concesionaria_private.res" -O coff $(WINDRESFLAGS) 
+
