@@ -1,0 +1,37 @@
+# Project: Tienda_celulares
+# Makefile created by Red Panda C++ 3.2.2958
+
+CXX      = "g++.exe"
+CC       = "gcc.exe"
+WINDRES  = "windres.exe"
+RM       = del /q /f
+CD       = cd /d
+LIBS     = 
+INCS     = 
+CXXINCS  = 
+CXXFLAGS = $(CXXINCS) "-g3" "-pipe" "-Wall" "-D_DEBUG"
+CFLAGS   = $(INCS) "-g3" "-pipe" "-Wall" "-D_DEBUG"
+WINDRESFLAGS = 
+RES      = Tienda_celulares_private.res
+OBJ      = main.o $(RES)
+BIN      = Tienda_celulares.exe
+LINKOBJ  = "main.o" "Tienda_celulares_private.res"
+CLEANOBJ = "main.o" "Tienda_celulares_private.res" "Tienda_celulares.exe"
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	-$(RM) $(CLEANOBJ) >NUL 2>&1
+
+Tienda_celulares.exe: $(OBJ)
+
+	$(CC) $(LINKOBJ) -o "Tienda_celulares.exe" $(LIBS)
+
+main.o: main.c
+	$(CC) -c "main.c" -o "main.o" $(CFLAGS)  -finput-charset=UTF-8 -fexec-charset=windows-1252
+
+Tienda_celulares_private.res: Tienda_celulares_private.rc 
+	$(WINDRES) -i "Tienda_celulares_private.rc" --input-format=rc -o "Tienda_celulares_private.res" -O coff $(WINDRESFLAGS) 
+

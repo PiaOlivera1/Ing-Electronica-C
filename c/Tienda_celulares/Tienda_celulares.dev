@@ -1,6 +1,6 @@
 [Project]
-filename = Concesionaria.dev
-name = Concesionaria
+filename = Tienda_celulares.dev
+name = Tienda_celulares
 UnitCount = 1
 Type = 1
 Ver = 3
@@ -9,7 +9,7 @@ Libs =
 Bins = 
 ResourceIncludes = 
 MakeIncludes = 
-PrivateResource = Concesionaria_private.rc
+PrivateResource = 
 Compiler = 
 CppCompiler = 
 Linker = 
@@ -53,7 +53,15 @@ Priority = 1000
 OverrideBuildCmd = 0
 BuildCmd = 
 FileEncoding = PROJECT
-RealEncoding = UTF-8
+RealEncoding = ASCII
+
+
+[CompilerSettings]
+c_cmd_opt_std = 
+cc_cmd_opt_debug_info = on
+cc_cmd_opt_std = 
+cc_cmd_opt_use_pipe = on
+cc_cmd_opt_warning_all = on
 
 
 [VersionInfo]
@@ -74,11 +82,3 @@ ProductName =
 ProductVersion = 
 AutoIncBuildNr = 0
 SyncProduct = 1
-
-
-[CompilerSettings]
-c_cmd_opt_std = 
-cc_cmd_opt_debug_info = on
-cc_cmd_opt_std = 
-cc_cmd_opt_use_pipe = on
-cc_cmd_opt_warning_all = on

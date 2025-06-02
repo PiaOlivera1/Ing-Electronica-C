@@ -119,7 +119,7 @@ int main(int argc, char *argv[]) {
 	printf("Anio: %ld\n", autos_disponibles[indice_min].anio);
 	printf("Precio: %ld\n", autos_disponibles[indice_min].precio);
 	printf("Km: %ld\n", autos_disponibles[indice_min].km);
-	printf("El auto de mayor valor es de : %ld\n", maximo);
+	
 	printf("\n");
 	printf("Detalle del auto de mayor valor:\n");
 	printf("Marca: %s\n", autos_disponibles[indice_max].marca);
