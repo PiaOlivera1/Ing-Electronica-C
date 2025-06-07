@@ -62,6 +62,7 @@ int main(int argc, char *argv[]) {
 	short almacenamiento_mayor=0;
 	short mayores_2021=0;
 	short hay_iph=0;
+	short hay_motorola;
 	
 	
 	
@@ -230,6 +231,26 @@ int main(int argc, char *argv[]) {
 	{
 		printf("No hay iphone para la venta:\n");	
 	}
+	printf("\n");
 	
+	printf("Motorolas disponibles:\n");
+	
+	hay_motorola =0;
+	for(i=0;i<disponibilidad;i++)
+	{
+		if(strcmp(disponibles_venta[i].marca, "motorola")==0)
+		{
+			hay_motorola =1;
+			printf("Modelo: %s\n", disponibles_venta[i].modelo);
+			printf("Anio: %ld\n", disponibles_venta[i].anio);
+			printf("Precio %.2f\n", disponibles_venta[i].precio);
+			printf("Almacenamiento: %hd \n", disponibles_venta[i].almacenamiento);
+		}
+	}
+	
+	if(!hay_motorola)
+	{
+		printf("No hay motorolas para vender.\n");
+	}
 	return 0;
 }
