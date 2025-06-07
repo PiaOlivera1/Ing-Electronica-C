@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define cantidad 3
+#define cantidad 2
 
 /*
 Una tienda de celulares necesita un programa en C para gestionar la información de los teléfonos disponibles a la venta. Para ello, se desea:
@@ -48,6 +48,7 @@ struct tienda_celulares{
 	float precio;
 	short almacenamiento;
 };
+
 int main(int argc, char *argv[]) {
 	struct tienda_celulares disponibles_venta[cantidad];
 	long disponibilidad;
@@ -58,17 +59,22 @@ int main(int argc, char *argv[]) {
 	float max;
 	short indice_max=0;
 	short indice_min=0;
+	short almacenamiento_mayor=0;
+	short mayores_2021=0;
+	short hay_iph=0;
+	
+	
 	
 	printf("Ingrese la marca o 'Fin'para terminar:\n");
-	scanf("%19[^\n]s", auxiliar);
+	scanf(" %19[^\n]s", auxiliar);
 	fflush(stdin);
-
-	while(strcmp(auxiliar, "Fin")!=0 && i< cantidad){
+	i=0;
+	while(strcmp(auxiliar, "Fin")!=0 && i< cantidad)
+	{
 		strcpy( disponibles_venta[i].marca, auxiliar);
-		
-		
+		fflush(stdin);
 		printf("Ingrese el modelo:\n");
-		scanf("%19[^\n]s", disponibles_venta[i].modelo);
+		scanf(" %19[^\n]s", disponibles_venta[i].modelo);
 		fflush(stdin);
 		
 		printf("Ingrese el anio:\n");
@@ -80,20 +86,45 @@ int main(int argc, char *argv[]) {
 		printf("Ingrese el almacenamiento en GB\n");
 		scanf("%hd", &disponibles_venta[i].almacenamiento);
 		
-		if(bandera){
+		if(bandera)
+		{
 			max= disponibles_venta[i].precio;
-			min =disponibles_venta[i].precio ;
+			min= disponibles_venta[i].precio; 
+			
+			indice_max=0;
+			indice_min=0;
+			
 			bandera =0;
 		}
-		i++;
-		fflush(stdin);
-		printf("Ingrese la marca:\n");
-		scanf("%19[^\n]s", auxiliar);
-		fflush(stdin);
-	}
-	disponibilidad=i;
 	
-	for(i=0;i<disponibilidad ;i++){
+		i++;
+		if(i!= cantidad)
+		{
+			fflush(stdin);
+			printf("Ingrese la marca:\n");
+			scanf("%19[^\n]s", auxiliar);
+			fflush(stdin);
+		}
+		else 
+		{
+			printf("Limite de ingreso alcanzado.\n");
+		}
+	
+	}
+	
+	if(i==0)
+	{
+		printf("No hay celulares para vender.\n");
+		exit(1); //Salir del programa
+	}
+	
+	disponibilidad= i;
+	
+	printf("\n");
+	printf("CELULARES DISPONIBLES A LA VENTA:\n");
+	
+	for(i=0;i<disponibilidad ;i++)
+	{
 		printf("Celular %hd :\n", i+1);
 		printf("Marca: %s\n", disponibles_venta[i].marca);
 		printf("Modelo: %s\n", disponibles_venta[i].modelo);
@@ -102,12 +133,17 @@ int main(int argc, char *argv[]) {
 		printf("Almacenamiento: %hd\n",disponibles_venta[i].almacenamiento);
 		printf("\n");
 	}
-	for( i=0;i<disponibilidad;i++){
-		if(disponibles_venta[i].precio < min){
+	
+	for( i=0;i<disponibilidad;i++)
+	{
+		if(disponibles_venta[i].precio < min)
+		{
 			min= disponibles_venta[i].precio;
 			indice_min = i;
 		}
-		if(disponibles_venta[i].precio > max){
+		
+		if(disponibles_venta[i].precio > max)
+		{
 			max= disponibles_venta[i].precio;
 			indice_max = i;
 		}
@@ -128,5 +164,72 @@ int main(int argc, char *argv[]) {
 	printf("Precio: %.2f\n",disponibles_venta[indice_min].precio);
 	printf("Almacenamiento: %hd\n", disponibles_venta[indice_min].almacenamiento);
 	printf("\n");
+	
+	printf("Celulares mayores o igual a 128GB\n");
+	
+	almacenamiento_mayor=0;
+	
+	for( i=0;i<disponibilidad;i++)
+	{
+		if(disponibles_venta[i].almacenamiento >= 128)
+		{
+			almacenamiento_mayor = 1;
+			
+			printf("Marca: %s\n", disponibles_venta[i].marca);
+			printf("Modelo: %s\n",disponibles_venta[i].modelo);
+			printf("Anio: %ld\n", disponibles_venta[i].anio);
+			printf("Precio: %.2f\n",disponibles_venta[i].precio);
+			printf("Almacenamiento: %hd\n", disponibles_venta[i].almacenamiento);
+		}
+	}
+	
+	if(!almacenamiento_mayor)
+	{
+		printf("No hay ningun modelo con 128gb o mas.\n");
+	}
+
+	printf("\n");
+	
+	printf("Celulares lanzados a partir del 2021:\n");
+	
+	mayores_2021 =0;
+	
+	for( i=0;i< disponibilidad;i++){
+		if(disponibles_venta[i].anio> 2021)
+		{
+			mayores_2021 =1;
+			printf("Marca: %s\n", disponibles_venta[i].marca);
+			printf("Modelo: %s\n", disponibles_venta[i].modelo);
+			printf("Anio: %ld\n", disponibles_venta[i].anio);
+			printf("Precio: %.2f\n",disponibles_venta[i].precio);
+			printf("Almacenamiento: %hd\n", disponibles_venta[i].almacenamiento);
+			printf("\n");
+		}
+	}
+	
+	if(!mayores_2021)
+	{
+		printf("No hay ningun celular disponible apartir del anio 2021\n");
+	}
+	
+	printf("Iphone Disponibles:\n");
+	
+	hay_iph =0;
+	for( i=0;i<disponibilidad;i++)
+	{	
+		if(strcmp(disponibles_venta[i].marca, "iphone")==0)
+		{	hay_iph =1;	
+			printf("Modelo: %s\n", disponibles_venta[i].modelo);
+			printf("Anio: %ld\n", disponibles_venta[i].anio);
+			printf("Precio: %.2f\n",disponibles_venta[i].precio);
+			printf("Almacenamiento: %hd\n", disponibles_venta[i].almacenamiento);
+		}		
+	}
+	
+	if(!hay_iph)
+	{
+		printf("No hay iphone para la venta:\n");	
+	}
+	
 	return 0;
 }
