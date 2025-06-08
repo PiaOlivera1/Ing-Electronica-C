@@ -66,6 +66,7 @@ int main(int argc, char *argv[]) {
 	
 	
 	
+	
 	printf("Ingrese la marca o 'Fin'para terminar:\n");
 	scanf(" %19[^\n]s", auxiliar);
 	fflush(stdin);
