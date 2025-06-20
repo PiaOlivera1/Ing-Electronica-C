@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define cantidad 2
+#define cantidad 10
 
 /*
 Una tienda de celulares necesita un programa en C para gestionar la información de los teléfonos disponibles a la venta. Para ello, se desea:
@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
 	short mayores_2021=0;
 	short hay_iph=0;
 	short hay_motorola;
-	
+	//short samsung;
 	
 	
 	
@@ -189,7 +189,7 @@ int main(int argc, char *argv[]) {
 	{
 		printf("No hay ningun modelo con 128gb o mas.\n");
 	}
-
+	
 	printf("\n");
 	
 	printf("Celulares lanzados a partir del 2021:\n");
@@ -213,13 +213,13 @@ int main(int argc, char *argv[]) {
 	{
 		printf("No hay ningun celular disponible apartir del anio 2021\n");
 	}
-	
+	fflush(stdin);
 	printf("Iphone Disponibles:\n");
 	
 	hay_iph =0;
 	for( i=0;i<disponibilidad;i++)
 	{	
-		if(strcmp(disponibles_venta[i].marca, "iphone")==0)
+		if(strcmp(disponibles_venta[i].marca, "iphone")==0 || strcmp(disponibles_venta[i].marca, "Iphone")==0 || strcmp(disponibles_venta[i].marca, "IPHONE")==0)
 		{	hay_iph =1;	
 			printf("Modelo: %s\n", disponibles_venta[i].modelo);
 			printf("Anio: %ld\n", disponibles_venta[i].anio);
@@ -233,13 +233,14 @@ int main(int argc, char *argv[]) {
 		printf("No hay iphone para la venta:\n");	
 	}
 	printf("\n");
+	fflush(stdin);
 	
 	printf("Motorolas disponibles:\n");
 	
 	hay_motorola =0;
 	for(i=0;i<disponibilidad;i++)
 	{
-		if(strcmp(disponibles_venta[i].marca, "motorola")==0)
+		if(strcmp(disponibles_venta[i].marca, "motorola")==0 || strcmp(disponibles_venta[i].marca, "MOTOROLA")==0 || strcmp(disponibles_venta[i].marca, "Motorola")==0)
 		{
 			hay_motorola =1;
 			printf("Modelo: %s\n", disponibles_venta[i].modelo);
@@ -252,6 +253,37 @@ int main(int argc, char *argv[]) {
 	if(!hay_motorola)
 	{
 		printf("No hay motorolas para vender.\n");
+	}
+	fflush(stdin);
+	printf("\n");
+	
+	/*printf("Samsung disponibles:\n");
+	samsung =0;
+	for( i=0;i<disponibilidad;i++)
+	{
+		if(strcmp(disponibles_venta[i].marca, "samsung")==0 ||strcmp(disponibles_venta[i].marca, "Samsung")==0 || strcmp(disponibles_venta[i].marca, "SAMSUNG")==0)
+		{
+				samsung =1;
+				printf("Modelo: %s\n", disponibles_venta[i].modelo);
+				printf("Anio: %ld\n", disponibles_venta[i].anio);
+				printf("Precio: %.2f\n", disponibles_venta[i].precio);
+				printf("Almacenamiento %hd\n", disponibles_venta[i].almacenamiento);
+					
+		}
+	}
+	
+	if(!samsung)
+	{
+		printf("No hay Samsung disponibles para la venta.\n");
+	}
+	*/
+	bandera =0;
+	for(i=0; i< disponibilidad; i++){
+		if(strcmp(disponibles_venta[0].marca, "s")){
+			bandera=1;
+		printf("Modelos que empiezan con letra S\n");
+		printf("marca: %s\n", disponibles_venta[i].marca);
+		}	
 	}
 	return 0;
 }
