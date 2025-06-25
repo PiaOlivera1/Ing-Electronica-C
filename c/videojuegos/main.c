@@ -48,6 +48,7 @@ int main(void) {
 	scanf("%[^%\n]s", auxiliar);
 	fflush(stdin);
 	
+	bandera=1;
 	i =0;
 	while(stricmp(auxiliar, "Fin")!=0 && i < cantidad){
 		strcpy(juegos[i].nombre_juego, auxiliar);
@@ -62,6 +63,12 @@ int main(void) {
 		printf("Ingrese el precio:\n");
 		scanf("%f", &juegos[i].precio);
 		fflush(stdin);
+		
+		if(bandera){
+			precio_mayor = juegos[i].precio;
+			precio_menor = juegos[i].precio;
+			bandera =0;
+		}
 		
 		i++;
 		fflush(stdin);
@@ -85,15 +92,9 @@ int main(void) {
 	fflush(stdin);
 	/// MENOR Y MAYOR PRECIO
 	
-	bandera=1;
+	
 	for( i=0;i<juegosDisponibles;i++)
 	{
-		if(bandera){
-			precio_mayor = juegos[i].precio;
-			precio_menor = juegos[i].precio;
-			bandera =0;
-		}
-		else{
 			if(juegos[i].precio> precio_mayor)
 			{
 				precio_mayor =juegos[i].precio;
@@ -106,7 +107,7 @@ int main(void) {
 				indice_menor_p = i;
 				
 			}
-		}
+	
 	
 	}
 	fflush(stdin);
@@ -117,11 +118,13 @@ int main(void) {
 	
 	//Mayores al año 2020
 	printf("\n");
-	printf("Juegos superiores al anio 2020");
+	printf("Juegos superiores al anio 2020\n");
 	anio_mayor_2020=0;
 	for(i=0;i<juegosDisponibles;i++){
+		fflush(stdin);
 		if(juegos[i].anio_lanzamiento >2020){
 			anio_mayor_2020 =1;
+			fflush(stdin);
 			printf("Juego %s , anio %hd\n", juegos[i].nombre_juego, juegos[i].anio_lanzamiento);
 			fflush(stdin);
 		}
@@ -130,6 +133,22 @@ int main(void) {
 	fflush(stdin);
 	if(!anio_mayor_2020){
 		printf("No hay ningun juego superior al 2020 para vender.\n");
+	}
+	printf("\n");
+	//nombres con mayor de 5 caracteres
+	printf("Nombres mayores a 5 caracteres:\n");
+	for(i=0;i<juegosDisponibles;i++){
+		if(strlen(juegos[i].nombre_juego)>5){
+			printf("%s\n", juegos[i].nombre_juego);
+		}
+	}
+	
+	// juegos repetidos
+	for(i=0;i<juegosDisponibles;i++){
+		if(stricmp(juegos[i].nombre_juego, juegos[i].nombre_juego)==0){
+			printf("Juegos repetidos:\n");
+			printf("%s %hd",juegos[i].nombre_juego, juegos[i].anio_lanzamiento);
+		}
 	}
 	return 0;
 }
