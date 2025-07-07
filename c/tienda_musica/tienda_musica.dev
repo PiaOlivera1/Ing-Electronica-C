@@ -1,6 +1,6 @@
 [Project]
-filename = videojuegos.dev
-name = videojuegos
+filename = tienda_musica.dev
+name = tienda_musica
 UnitCount = 1
 Type = 1
 Ver = 3
@@ -9,7 +9,7 @@ Libs =
 Bins = 
 ResourceIncludes = 
 MakeIncludes = 
-PrivateResource = videojuegos_private.rc
+PrivateResource = tienda_musica_private.rc
 Compiler = 
 CppCompiler = 
 Linker = 
@@ -69,8 +69,8 @@ FileDescription = Developed using the Red Panda C++ IDE
 InternalName = 
 LegalCopyright = 
 LegalTrademarks = 
-OriginalFilename = videojuegos.exe
-ProductName = videojuegos
+OriginalFilename = tienda_musica.exe
+ProductName = tienda_musica
 ProductVersion = 0.1.1.1
 AutoIncBuildNr = 0
 SyncProduct = 1
@@ -79,5 +79,6 @@ SyncProduct = 1
 [CompilerSettings]
 c_cmd_opt_std = 
 cc_cmd_opt_debug_info = on
+cc_cmd_opt_std = 
 cc_cmd_opt_use_pipe = on
 cc_cmd_opt_warning_all = on

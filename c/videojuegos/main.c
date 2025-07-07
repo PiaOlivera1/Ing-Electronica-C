@@ -21,8 +21,7 @@ El videojuego más caro y el más barato.
 Todos los juegos lanzados después del año 2020.
 
 Todos los juegos que tengan más de 10 caracteres en el nombre (usando strlen).
-
-Comparar si hay juegos repetidos (mismo nombre ignorando mayúsculas y minúsculas, usando stricmp).*/
+*/
 
 struct Videojuego{
 	char nombre_juego[30];
@@ -142,13 +141,7 @@ int main(void) {
 			printf("%s\n", juegos[i].nombre_juego);
 		}
 	}
-	
-	// juegos repetidos
-	for(i=0;i<juegosDisponibles;i++){
-		if(stricmp(juegos[i].nombre_juego, juegos[i].nombre_juego)==0){
-			printf("Juegos repetidos:\n");
-			printf("%s %hd",juegos[i].nombre_juego, juegos[i].anio_lanzamiento);
-		}
-	}
+	printf("\n");
+
 	return 0;
 }
