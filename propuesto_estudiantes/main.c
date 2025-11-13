@@ -19,8 +19,8 @@ Cual fue el promedio de pasajeros transportados
 */
 struct linea_colectivo {
 	char horarios_diarios [50];
-	bool pasajeros_ida;
-	bool pasajeros_vuelta;
+	char pasajeros_ida[4];
+	char pasajeros_vuelta[4];
 	
 };
 int main(int argc, char *argv[]) {
@@ -28,7 +28,6 @@ int main(int argc, char *argv[]) {
 	char auxiliar[50];
 	short pasajeros_a_bordo =0;
 	short i=0;
-	char respuesta[10];
 	short contador_ida=0;
 	short contador_vuelta =0;
 	
@@ -40,17 +39,22 @@ int main(int argc, char *argv[]) {
 		strcpy(colectivo[i].horarios_diarios, auxiliar);
 		
 		printf("Ingrese si desea el boleto de ida: (si/no):\n ");
-		scanf("%s", respuesta);
+		scanf("%3[^\n]s", colectivo[i].pasajeros_ida); //la respuesta será un string
 		fflush(stdin);
-		colectivo[i].pasajeros_ida= (stricmp(respuesta, "si")==0);
-		if(colectivo[i].pasajeros_ida){
+		
+		// compramos si es si, quiere decir que es un true
+		if(stricmp(colectivo[i].pasajeros_ida, "si")==0){
 			contador_ida++;
 		}
+		//colectivo[i].pasajeros_ida= (stricmp(respuesta, "si")==0);
+		//if(colectivo[i].pasajeros_ida){
+		//	contador_ida++;
+		//}
 		printf("Ingrese si desea el boleto de vuelta: (si/no):\n");
-		scanf("%s", respuesta);
+		scanf("%3[^\n]s", colectivo[i].pasajeros_vuelta);
 		fflush(stdin);
-		colectivo[i].pasajeros_vuelta= (stricmp(respuesta, "si")==0);
-		if(colectivo[i].pasajeros_vuelta){
+		//colectivo[i].pasajeros_vuelta= (stricmp(respuesta, "si")==0);
+		if(stricmp(colectivo[i].pasajeros_vuelta, "si")==0){
 			contador_vuelta++;
 		}
 		i++;
@@ -60,12 +64,15 @@ int main(int argc, char *argv[]) {
 		
 	}
 	pasajeros_a_bordo= i;
-	
+	if(i ==0){
+		printf("No hay ningún pasajero abordo el dia de hoy.\n");
+	}
+	else{
 	//Mostramos los pasajeros a bordo:
 	for( i=0;i<pasajeros_a_bordo;i++){
 		printf("Horario: %s\n", colectivo[i].horarios_diarios);
-		printf("Pasaje de ida: %d\n", colectivo[i].pasajeros_ida);
-		printf("Pasaje vuelta: %d\n", colectivo[i].pasajeros_vuelta);
+		printf("Pasaje de ida: %s\n", colectivo[i].pasajeros_ida);
+		printf("Pasaje vuelta: %s\n", colectivo[i].pasajeros_vuelta);
 		printf("\n");
 	}
 	
@@ -128,7 +135,8 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	
-	printf("En el horario mediodia hubieron %hd pasajes de ida y %hd pasajes de vuelta vendidos\n", cont_ida_anochecer, cont_vuelta_anochecer);
+	printf("En el horario anochecer hubieron %hd pasajes de ida y %hd pasajes de vuelta vendidos\n", cont_ida_anochecer, cont_vuelta_anochecer);
+	
 	//Cual fue el horario que más pasajeros transporto
 	short suma_mediodia = cont_ida_mediodia +cont_vuelta_mediodia;
 	short suma_amanecer = cont_ida_amanecer + cont_vuelta_amanecer;
@@ -148,8 +156,16 @@ int main(int argc, char *argv[]) {
 		printf("En el horario que más boletos se venderion fue en el horario de la tarde, con un total de %hd pasajes\n",suma_tarde);
 	}
 	
+	//el boleto cuesta fijo 500 pesos, cuánto dinero se recaudó en total. 
+	float total = (float) (suma_amanecer + suma_anochecer +suma_mediodia +suma_tarde) *500;
+	printf("El total recaudado fue de $ %.2f\n", total);
+	
+	//calculamos el promedio 
+	float promedio = (float)(suma_amanecer + suma_anochecer +suma_mediodia +suma_tarde) /4;
+	
+	printf("El promedio de los pasajeros transportados fue de %.2f ", promedio);
 	
 	
-	
+	}
 	return 0;
 }
