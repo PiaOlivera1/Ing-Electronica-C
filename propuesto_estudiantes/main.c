@@ -155,6 +155,17 @@ int main(int argc, char *argv[]) {
 	else if(suma_tarde> suma_amanecer && suma_tarde> suma_mediodia && suma_tarde> suma_anochecer){
 		printf("En el horario que más boletos se venderion fue en el horario de la tarde, con un total de %hd pasajes\n",suma_tarde);
 	}
+		else {
+			printf("Hubo un empate entre los horarios con más ventas:\n");
+			if (suma_amanecer == suma_tarde && suma_amanecer== suma_anochecer)
+				printf("- Mañana, Tarde y Noche empataron con %d pasajes cada uno\n", suma_amanecer);
+			else if (suma_amanecer == suma_tarde)
+				printf("- Mañana y Tarde empataron con %d pasajes\n", suma_amanecer);
+			else if (suma_amanecer == suma_anochecer)
+				printf("- Mañana y Noche empataron con %d pasajes\n", suma_amanecer);
+			else if (suma_anochecer == suma_tarde)
+				printf("- Tarde y Noche empataron con %d pasajes\n", suma_tarde);
+		}
 	
 	//el boleto cuesta fijo 500 pesos, cuánto dinero se recaudó en total. 
 	float total = (float) (suma_amanecer + suma_anochecer +suma_mediodia +suma_tarde) *500;
